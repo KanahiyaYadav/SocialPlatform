@@ -120,7 +120,6 @@ func Seed(store store.Storage, db *sql.DB) {
 		}
 	}
 	log.Println("seeded successfully")
-	return
 }
 
 func generateUsers(num int) []*store.User {

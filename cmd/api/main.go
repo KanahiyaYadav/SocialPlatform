@@ -143,5 +143,5 @@ func main() {
 	mux := app.mount()
 
 	log.Fatal(app.run(mux))
-	logger.Fatal(app.run(mux))
+	// logger.Fatal(app.run(mux))
 }
