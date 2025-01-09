@@ -2,6 +2,7 @@ package cache
 
 import (
 	"context"
+
 	"social/internal/store"
 
 	"github.com/stretchr/testify/mock"
@@ -17,12 +18,16 @@ type MockUserStore struct {
 	mock.Mock
 }
 
-func (m *MockUserStore) Get(ctx context.Context, id int64) (*store.User, error) {
-	args := m.Called(ctx, id)
+func (m *MockUserStore) Get(ctx context.Context, userID int64) (*store.User, error) {
+	args := m.Called(userID)
 	return nil, args.Error(1)
 }
 
 func (m *MockUserStore) Set(ctx context.Context, user *store.User) error {
-	args := m.Called(ctx, user)
+	args := m.Called(user)
 	return args.Error(0)
+}
+
+func (m *MockUserStore) Delete(ctx context.Context, userID int64) {
+	m.Called(userID)
 }

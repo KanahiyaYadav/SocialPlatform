@@ -12,9 +12,9 @@ const secret = "test"
 
 var testClaims = jwt.MapClaims{
 	"aud": "test-aud",
-	"iss": "test-iss",
-	"sub": int64(42),
-	"exp": time.Now().Add(time.Minute).Unix(),
+	"iss": "test-aud",
+	"sub": int64(1),
+	"exp": time.Now().Add(time.Hour).Unix(),
 }
 
 func (a *TestAuthenticator) GenerateToken(claims jwt.Claims) (string, error) {
@@ -23,6 +23,7 @@ func (a *TestAuthenticator) GenerateToken(claims jwt.Claims) (string, error) {
 	tokenString, _ := token.SignedString([]byte(secret))
 	return tokenString, nil
 }
+
 func (a *TestAuthenticator) ValidateToken(token string) (*jwt.Token, error) {
 	return jwt.Parse(token, func(t *jwt.Token) (interface{}, error) {
 		return []byte(secret), nil
